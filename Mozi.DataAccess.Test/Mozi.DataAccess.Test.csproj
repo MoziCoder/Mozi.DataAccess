@@ -34,15 +34,25 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mozi.DataAccess.Sqlite\Mozi.DataAccess.Sqlite.csproj">
+      <Project>{750da3c6-6407-40f8-9619-d6b1934ec732}</Project>
+      <Name>Mozi.DataAccess.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mozi.DataAccess.SQLServer\Mozi.DataAccess.SQLServer.csproj">
+      <Project>{8823285e-3436-4c14-8145-39ddd72b402e}</Project>
+      <Name>Mozi.DataAccess.SQLServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mozi.DataAccess\Mozi.DataAccess.csproj">
+      <Project>{487ff97e-6a46-4d19-a5ca-06b21bfe40bf}</Project>
+      <Name>Mozi.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
