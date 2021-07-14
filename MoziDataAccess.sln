@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.Sqlite", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.SQLServer", "Mozi.DataAccess.SQLServer\Mozi.DataAccess.SQLServer.csproj", "{8823285E-3436-4C14-8145-39DDD72B402E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.Test", "Mozi.DataAccess.Test\Mozi.DataAccess.Test.csproj", "{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8823285E-3436-4C14-8145-39DDD72B402E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8823285E-3436-4C14-8145-39DDD72B402E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8823285E-3436-4C14-8145-39DDD72B402E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
