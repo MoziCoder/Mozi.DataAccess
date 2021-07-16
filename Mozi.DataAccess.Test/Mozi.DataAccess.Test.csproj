@@ -52,10 +52,17 @@
       <Project>{8823285e-3436-4c14-8145-39ddd72b402e}</Project>
       <Name>Mozi.DataAccess.SQLServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mozi.DataAccess.Task\Mozi.DataAccess.TaskQuence.csproj">
+      <Project>{1d6a1a53-9686-45dd-8017-c6db6b9f9400}</Project>
+      <Name>Mozi.DataAccess.TaskQuence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mozi.DataAccess\Mozi.DataAccess.csproj">
       <Project>{487ff97e-6a46-4d19-a5ca-06b21bfe40bf}</Project>
       <Name>Mozi.DataAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Maps\Example.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

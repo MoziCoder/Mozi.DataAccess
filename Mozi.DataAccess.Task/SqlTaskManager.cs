@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mozi.DataAccess.Config;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Mozi.DataAccess.Task
+namespace Mozi.DataAccess.TaskQuence
 {
     /// <summary>
     /// sql任务管理 自动线程均衡
@@ -157,7 +158,7 @@ namespace Mozi.DataAccess.Task
                     UserID = server.User,
                     Password = server.Password
                 };
-                DataAccess.SQLServer.Access rss = new DataAccess.SQLServer.Access(sb.ConnectionString);
+                SQLServer.Access rss = new SQLServer.Access(sb.ConnectionString);
                 rss.AddParams(st.globalparams);
                 try
                 {

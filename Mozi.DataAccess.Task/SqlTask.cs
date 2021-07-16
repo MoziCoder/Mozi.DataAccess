@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Mozi.DataAccess.Config;
 
-namespace Mozi.DataAccess.Task
+namespace Mozi.DataAccess.TaskQuence
 {
     /// <summary>
     /// sql任务
