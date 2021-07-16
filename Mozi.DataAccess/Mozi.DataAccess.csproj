@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbsDataAccess.cs" />
+    <Compile Include="Config\ServerConfig.cs" />
     <Compile Include="Generic\StringCompareIgnoreCase.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="DataTypeMapping.cs" />
@@ -52,6 +53,8 @@
     <Compile Include="SqlMapContainer.cs" />
     <Compile Include="SqlMapLoader.cs" />
     <Compile Include="SqlStatement.cs" />
+    <Compile Include="Task\SqlTask.cs" />
+    <Compile Include="Task\SqlTaskManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Newtonsoft.Json.dll">
