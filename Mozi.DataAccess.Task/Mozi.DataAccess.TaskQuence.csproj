@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{487FF97E-6A46-4D19-A5CA-06B21BFE40BF}</ProjectGuid>
+    <ProjectGuid>{1D6A1A53-9686-45DD-8017-C6DB6B9F9400}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mozi.DataAccess</RootNamespace>
-    <AssemblyName>Mozi.DataAccess</AssemblyName>
+    <RootNamespace>Mozi.DataAccess.TaskQuence</RootNamespace>
+    <AssemblyName>Mozi.DataAccess.TaskQuence</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,44 +31,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbsDataAccess.cs" />
-    <Compile Include="Config\ServerConfig.cs" />
-    <Compile Include="Generic\StringCompareIgnoreCase.cs" />
-    <Compile Include="DataManager.cs" />
-    <Compile Include="DataTypeMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlCommandType.cs" />
-    <Compile Include="SqlMapContainer.cs" />
-    <Compile Include="SqlMapLoader.cs" />
-    <Compile Include="SqlStatement.cs" />
+    <Compile Include="SqlTask.cs" />
+    <Compile Include="SqlTaskManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Newtonsoft.Json.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Newtonsoft.Json.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <ProjectReference Include="..\Mozi.DataAccess.SQLServer\Mozi.DataAccess.SQLServer.csproj">
+      <Project>{8823285e-3436-4c14-8145-39ddd72b402e}</Project>
+      <Name>Mozi.DataAccess.SQLServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mozi.DataAccess\Mozi.DataAccess.csproj">
+      <Project>{487ff97e-6a46-4d19-a5ca-06b21bfe40bf}</Project>
+      <Name>Mozi.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

@@ -89,6 +89,14 @@ namespace Mozi.DataAccess
                     {
                         string text = sr.ReadToEnd();
                         List<SqlStatement> listSqls = AnalysisScripts(text);
+                        foreach(var r in listSqls)
+                        {
+                            r.codebase = new CodeBase()
+                            {
+                                FilePath = dirname,
+                                FileName = d.Name
+                            };
+                        }
                         if (listSqls != null)
                         {
                             _mapContainer.AddStatements(listSqls);

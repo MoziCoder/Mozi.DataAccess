@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Mozi.DataAccess
 {
     /// <summary>
-    /// 表达式
+    /// 语句
     /// </summary>
     public class SqlStatement
     {
@@ -14,14 +14,21 @@ namespace Mozi.DataAccess
         public string statement       { get; set; }
         public List<string> results   { get; set; }
         public List<string> parameter { get; set; }
-
+        /// <summary>
+        /// 语句代码路径
+        /// </summary>
+        public CodeBase codebase { get; set; }
         public SqlStatement()
         {
             parameter = new List<string>();
             results = new List<string>();
         }
     }
-
+    public class CodeBase
+    {
+        public string FilePath { get; set; }
+        public string FileName { get; set; }
+    }
     /// <summary>
     /// SQL表达式编译结果
     /// </summary>
