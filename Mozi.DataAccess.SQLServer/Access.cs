@@ -35,7 +35,7 @@ namespace Mozi.DataAccess.SQLServer
         /// <returns></returns>
         public override DataTable ExecuteQuery(SqlStatement statement, object param, string wherecause)
         {
-            string sql = InjectParams(statement, param, wherecause);
+            string sql = InflateParams(statement, param, wherecause);
             using (SqlConnection sc = (SqlConnection)BuildConnection())
             {
                 SqlCommand sqlcmd = sc.CreateCommand();
@@ -58,7 +58,7 @@ namespace Mozi.DataAccess.SQLServer
         /// <returns></returns>
         public override bool ExecuteCommand(SqlStatement statement, object param, string wherecause)
         {
-            string sql = InjectParams(statement, param, wherecause);
+            string sql = InflateParams(statement, param, wherecause);
             using (SqlConnection sc = (SqlConnection)BuildConnection())
             {
                 SqlCommand sqlcmd = sc.CreateCommand();
@@ -82,7 +82,7 @@ namespace Mozi.DataAccess.SQLServer
             List<string> sqls = new List<string>();
             for (int i = 0; i < statements.Count; i++)
             {
-                sqls.Add(InjectParams(statements[i], parameters[i]));
+                sqls.Add(InflateParams(statements[i], parameters[i]));
             }
 
             using (SqlConnection sc = (SqlConnection)BuildConnection())
@@ -116,12 +116,12 @@ namespace Mozi.DataAccess.SQLServer
         /// <param name="statements"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public override bool ExecuteCommandBatchNoTran(List<SqlStatement> statements, List<object> parameters)
+        public override bool ExecuteCommandBatchWithoutTran(List<SqlStatement> statements, List<object> parameters)
         {
             List<string> sqls = new List<string>();
             for (int i = 0; i < statements.Count; i++)
             {
-                sqls.Add(InjectParams(statements[i], parameters[i]));
+                sqls.Add(InflateParams(statements[i], parameters[i]));
             }
             using (SqlConnection sc = (SqlConnection)BuildConnection())
             {

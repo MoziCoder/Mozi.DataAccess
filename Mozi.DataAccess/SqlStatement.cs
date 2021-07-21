@@ -6,6 +6,7 @@ namespace Mozi.DataAccess
     /// <summary>
     /// 语句
     /// </summary>
+    [Serializable]
     public class SqlStatement
     {
         public string name            { get; set; }
@@ -32,6 +33,7 @@ namespace Mozi.DataAccess
     /// <summary>
     /// SQL表达式编译结果
     /// </summary>
+    [Serializable]
     public class SqlStatementApplied : SqlStatement
     {
         public string      datasource       { get; set; }

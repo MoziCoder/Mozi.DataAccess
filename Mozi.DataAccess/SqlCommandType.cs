@@ -7,5 +7,6 @@
     {
         public const string Query = "query";
         public const string Command = "command";
+        public const string Transtraction="transaction";
     }
 }

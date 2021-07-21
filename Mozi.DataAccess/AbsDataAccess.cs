@@ -57,7 +57,7 @@ namespace Mozi.DataAccess
         /// </summary>
         /// <param name="paramName"></param>
         /// <param name="paramValue"></param>
-        public void AddParam(string paramName, object paramValue)
+        public void SetParam(string paramName, object paramValue)
         {
             if (GlobalParams.Exists(x=>x.name==paramName))
             {
@@ -76,7 +76,7 @@ namespace Mozi.DataAccess
         {
             foreach (var p in pms)
             {
-                AddParam(p.Key, p.Value);
+                SetParam(p.Key, p.Value);
             }
         }
         /// <summary>
@@ -85,9 +85,9 @@ namespace Mozi.DataAccess
         /// <param name="statement"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        protected string InjectParams(SqlStatement statement, object param)
+        protected string InflateParams(SqlStatement statement, object param)
         {
-            return InjectParams(statement, param, "");
+            return InflateParams(statement, param, "");
         }
 
         protected abstract DbConnection BuildConnection();
@@ -99,7 +99,7 @@ namespace Mozi.DataAccess
         /// <param name="param"></param>
         /// <param name="wherecause"></param>
         /// <returns></returns>
-        protected string InjectParams(SqlStatement statement, object param, string wherecause)
+        protected string InflateParams(SqlStatement statement, object param, string wherecause)
         {
             string sql = statement.statement;
             //写入sql头部注释
@@ -507,6 +507,6 @@ namespace Mozi.DataAccess
         /// <param name="statements"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public abstract bool ExecuteCommandBatchNoTran(List<SqlStatement> statements, List<object> parameters);
+        public abstract bool ExecuteCommandBatchWithoutTran(List<SqlStatement> statements, List<object> parameters);
     }  
 }

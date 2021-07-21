@@ -1,11 +1,11 @@
-﻿using Mozi.DataAccess.Config;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Mozi.DataAccess.Config;
 
 namespace Mozi.DataAccess.TaskQuence
 {
@@ -28,7 +28,7 @@ namespace Mozi.DataAccess.TaskQuence
 
         private readonly List<ConcurrentQueue<SqlTask>> _docker = new List<ConcurrentQueue<SqlTask>>();
 
-        private readonly List<System.Threading.Tasks.Task> _tasks = new List<System.Threading.Tasks.Task>();
+        private readonly List<Task> _tasks = new List<Task>();
         //队列调度器
         private Timer _dispatcher;
 
@@ -40,14 +40,18 @@ namespace Mozi.DataAccess.TaskQuence
 
         private ManualResetEvent _restEvent = new ManualResetEvent(true);
 
-        //单任务最大尝试次数
+        /// <summary>
+        /// 任务最大尝试次数
+        /// </summary>
         public uint MaxTaskTryCount
         {
             get { return _maxTaskTryCount; }
             set { _maxTaskTryCount = value; }
         }
 
-        //最大线程数
+        /// <summary>
+        /// 最大线程数
+        /// </summary>
         public uint MaxThreadCount
         {
             get { return _maxThreadCount; }
@@ -61,6 +65,11 @@ namespace Mozi.DataAccess.TaskQuence
         {
             get { return _autoStart; }
             set { _autoStart = value; }
+        }
+
+        public static SqlTaskManager Instance
+        {
+            get { return _sm ?? (_sm = new SqlTaskManager()); }
         }
 
         private SqlTaskManager()
@@ -108,14 +117,8 @@ namespace Mozi.DataAccess.TaskQuence
                 }
             }
             //唤醒线程
-            Begin();
+            Start();
         }
-
-        public static SqlTaskManager Instance
-        {
-            get { return _sm ?? (_sm = new SqlTaskManager()); }
-        }
-
         /// <summary>
         /// 入队 优先空闲线程
         /// </summary>
@@ -129,8 +132,10 @@ namespace Mozi.DataAccess.TaskQuence
             Console.WriteLine("{0},{1},{2},{3}", _docker[0].Count, _docker[1].Count, _docker[2].Count, _docker[3].Count);
 
         }
+        //TODO 要考虑任务的保存和恢复的问题，执行未结束的任务应该可恢复执行
+
         /// <summary>
-        /// 载入任务
+        /// 装填任务
         /// </summary>
         /// <param name="_ts"></param>
         public void Load(ICollection<SqlTask> _ts)
@@ -146,11 +151,11 @@ namespace Mozi.DataAccess.TaskQuence
         /// <param name="st"></param>
         private void Execute(SqlTask st)
         {
-            Console.WriteLine(" {0} 进入执行状态", st.statement.name + st.session.ConnectionName);
-            if (st.trycount < 4)
+            Console.WriteLine(" {0} 进入执行状态", st.Statement.name + st.Session.ConnectionName);
+            if (st.TryCount < 4)
             {
-                ServerConfig server = st.session;
-                SqlStatement ss = st.statement;
+                ServerConfig server = st.Session;
+                SqlStatement ss = st.Statement;
                 SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder
                 {
                     DataSource = server.Host + (string.IsNullOrEmpty(server.Instance) ? "" : "\\" + server.Instance),
@@ -162,17 +167,17 @@ namespace Mozi.DataAccess.TaskQuence
                 rss.AddParams(st.globalparams);
                 try
                 {
-                    rss.ExecuteCommand(ss, st.actparams);
-                    st.success = true;
+                    rss.ExecuteCommand(ss, st.ActParams);
+                    st.Success = true;
                 }
                 catch (Exception ex)
                 {
-                    st.message = ex.Message;
-                    st.errorcount++;
+                    st.Message = ex.Message;
+                    st.ErrorCount++;
                 }
                 finally
                 {
-                    st.trycount++;
+                    st.TryCount++;
                 }
             }
             else
@@ -180,8 +185,10 @@ namespace Mozi.DataAccess.TaskQuence
 
             }
         }
-
-        public void Begin()
+        /// <summary>
+        /// 开始执行任务
+        /// </summary>
+        public void Start()
         {
             for (int i = 0; i < MaxThreadCount; i++)
             {
@@ -193,12 +200,16 @@ namespace Mozi.DataAccess.TaskQuence
                 }
             }
         }
-        //
+        public void Stop()
+        {
+
+        }
+
         private void ThreadInvoker(object args)
         {
             int i = (int)args;
             ConcurrentQueue<SqlTask> queue = _docker[i];
-            Console.WriteLine(queue.IsEmpty ? "空队列" : "调用开始");
+            Console.WriteLine(queue.IsEmpty ? string.Format("队列{0},空闲",i) : string.Format("队列{0},调用开始", i));
             //信号指示
             while (!queue.IsEmpty)
             {
@@ -209,14 +220,14 @@ namespace Mozi.DataAccess.TaskQuence
                     try
                     {
                         Execute(task);
-                        if (!task.success)
+                        if (!task.Success)
                         {
                             _recycleposition.Enqueue(task);
                         }
                     }
                     catch (Exception ex)
                     {
-                        task.message += ex.Message;
+                        task.Message += ex.Message;
                     }
                 }
             }
