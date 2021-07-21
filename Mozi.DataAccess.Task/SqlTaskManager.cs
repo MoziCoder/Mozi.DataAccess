@@ -29,6 +29,8 @@ namespace Mozi.DataAccess.TaskQuence
         private readonly List<ConcurrentQueue<SqlTask>> _docker = new List<ConcurrentQueue<SqlTask>>();
 
         private readonly List<Task> _tasks = new List<Task>();
+        private readonly List<CancellationTokenSource> _tokens = new List<CancellationTokenSource>();
+
         //队列调度器
         private Timer _dispatcher;
 
@@ -39,6 +41,14 @@ namespace Mozi.DataAccess.TaskQuence
         private object _statistics = new object();
 
         private ManualResetEvent _restEvent = new ManualResetEvent(true);
+        /// <summary>
+        /// 任务追加事件
+        /// </summary>
+        public event TaskAdded OnTaskAdded;
+        /// <summary>
+        /// 任务状态变更事件
+        /// </summary>
+        public event TaskStateChange OnTaskStateChange;
 
         /// <summary>
         /// 任务最大尝试次数
@@ -82,8 +92,10 @@ namespace Mozi.DataAccess.TaskQuence
 
             for (int i = 0; i < MaxThreadCount; i++)
             {
-                Task t = new Task((x) => { }, TaskScheduler.Default);
+                CancellationTokenSource tokenSource = new CancellationTokenSource();
+                Task t = new Task((x) => { }, tokenSource.Token);
                 _tasks.Add(t);
+                _tokens.Add(tokenSource);
                 t.Start();
             }
         }
@@ -122,14 +134,20 @@ namespace Mozi.DataAccess.TaskQuence
         /// <summary>
         /// 入队 优先空闲线程
         /// </summary>
-        /// <param name="t"></param>
-        private void Enqueue(SqlTask t)
+        /// <param name="st"></param>
+        private void Enqueue(SqlTask st)
         {
             //分配队列
             ConcurrentQueue<SqlTask> target = _docker.OrderBy(x => x.Count).First();
-            target.Enqueue(t);
+            target.Enqueue(st);
+            SetTaskState(st, SqlTaskState.Wait);
             Console.WriteLine("{1}进入队列{0}", _docker.IndexOf(target), DateTime.Now);
             Console.WriteLine("{0},{1},{2},{3}", _docker[0].Count, _docker[1].Count, _docker[2].Count, _docker[3].Count);
+
+            if (OnTaskAdded != null)
+            {
+                OnTaskAdded(this, st);
+            }
 
         }
         //TODO 要考虑任务的保存和恢复的问题，执行未结束的任务应该可恢复执行
@@ -145,6 +163,16 @@ namespace Mozi.DataAccess.TaskQuence
                 Enqueue(sqlTask);
             }
         }
+
+        private void SetTaskState(SqlTask st,SqlTaskState state)
+        {
+            var oldState = st.TaskState;
+            st.TaskState = state;
+            if (oldState != state && OnTaskStateChange != null)
+            {
+                OnTaskStateChange(this, st,oldState, st.TaskState);
+            }
+        }
         /// <summary>
         /// 执行
         /// </summary>
@@ -152,6 +180,7 @@ namespace Mozi.DataAccess.TaskQuence
         private void Execute(SqlTask st)
         {
             Console.WriteLine(" {0} 进入执行状态", st.Statement.name + st.Session.ConnectionName);
+            SetTaskState(st, SqlTaskState.Executing);
             if (st.TryCount < 4)
             {
                 ServerConfig server = st.Session;
@@ -200,9 +229,16 @@ namespace Mozi.DataAccess.TaskQuence
                 }
             }
         }
+        /// <summary>
+        /// 终止所有线程
+        /// </summary>
         public void Stop()
         {
-
+            for (int i = 0; i < MaxThreadCount; i++)
+            {
+                var t = _tokens[i];
+                t.Cancel();
+            }
         }
 
         private void ThreadInvoker(object args)
@@ -228,6 +264,10 @@ namespace Mozi.DataAccess.TaskQuence
                     catch (Exception ex)
                     {
                         task.Message += ex.Message;
+                    }
+                    finally
+                    {
+                        SetTaskState(task, SqlTaskState.Complete);
                     }
                 }
             }
