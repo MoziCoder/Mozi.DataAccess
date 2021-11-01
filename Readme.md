@@ -16,6 +16,12 @@
 4. 可控性  
 	框架的使用最大限度的保留了SQL的原貌
 
+##　数据库适配
+
+SQLServer
+Sqlite
+MySql
+
 ### By [Jason][1] on Oct. 12,2017 
 
 [1]:mailto:brotherqian@163.com
