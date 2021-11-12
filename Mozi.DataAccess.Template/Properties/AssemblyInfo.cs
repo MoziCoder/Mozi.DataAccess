@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Mozi.DataAccess.Template")]
 [assembly: AssemblyDescription("数据模板组件")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("MoziCoder workgroup")]
 [assembly: AssemblyProduct("Mozi.DataAccess.Template")]
 [assembly: AssemblyCopyright("Copyright ©  MoziCoder 2021")]
 [assembly: AssemblyTrademark("")]
