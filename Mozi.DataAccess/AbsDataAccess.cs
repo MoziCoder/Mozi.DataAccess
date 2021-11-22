@@ -93,7 +93,7 @@ namespace Mozi.DataAccess
         protected abstract DbConnection BuildConnection();
         
         /// <summary>
-        /// 实时注入参数
+        /// 实时注入参数值到表达式中
         /// </summary>
         /// <param name="statement"></param>
         /// <param name="param"></param>
