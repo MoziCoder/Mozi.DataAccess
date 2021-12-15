@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Mozi.DataAccess.MySql\Mozi.DataAccess.MySql.csproj">
+      <Project>{b5888600-b912-4196-bc90-610cd9cf92fe}</Project>
+      <Name>Mozi.DataAccess.MySql</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mozi.DataAccess.Sqlite\Mozi.DataAccess.Sqlite.csproj">
       <Project>{750da3c6-6407-40f8-9619-d6b1934ec732}</Project>
       <Name>Mozi.DataAccess.Sqlite</Name>
@@ -55,6 +59,10 @@
     <ProjectReference Include="..\Mozi.DataAccess.Task\Mozi.DataAccess.TaskQuence.csproj">
       <Project>{1d6a1a53-9686-45dd-8017-c6db6b9f9400}</Project>
       <Name>Mozi.DataAccess.TaskQuence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mozi.DataAccess.Template\Mozi.DataAccess.Template.csproj">
+      <Project>{cc54ca17-8489-4b41-8fe5-6b4725b417b2}</Project>
+      <Name>Mozi.DataAccess.Template</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mozi.DataAccess\Mozi.DataAccess.csproj">
       <Project>{487ff97e-6a46-4d19-a5ca-06b21bfe40bf}</Project>
