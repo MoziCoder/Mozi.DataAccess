@@ -11,6 +11,10 @@ namespace Mozi.DataAccess.SQLServer
     /// </summary>
     public sealed class Access:AbsDataAccess
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connString">数据库链接字符串</param>
         public Access(string connString) : base(connString)
         {
 

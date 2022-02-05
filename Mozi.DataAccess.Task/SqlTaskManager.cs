@@ -24,7 +24,7 @@ namespace Mozi.DataAccess.TaskQuence
         private uint _maxTaskTryCount = 4;
         private uint _maxThreadCount = 4;
 
-        private readonly ConcurrentQueue<SqlTask> _recycleposition = new ConcurrentQueue<SqlTask>();
+        private readonly ConcurrentQueue<SqlTask> _recycleDocker = new ConcurrentQueue<SqlTask>();
 
         private readonly List<ConcurrentQueue<SqlTask>> _docker = new List<ConcurrentQueue<SqlTask>>();
 
@@ -107,9 +107,9 @@ namespace Mozi.DataAccess.TaskQuence
         private void DispatchHandler(object state)
         {
             //先检查回收队列中是否有任务
-            if (_recycleposition.Count > 0)
+            if (_recycleDocker.Count > 0)
             {
-                foreach (var rqs in _recycleposition)
+                foreach (var rqs in _recycleDocker)
                 {
                     Enqueue(rqs);
                 }
@@ -258,7 +258,7 @@ namespace Mozi.DataAccess.TaskQuence
                         Execute(task);
                         if (!task.Success)
                         {
-                            _recycleposition.Enqueue(task);
+                            _recycleDocker.Enqueue(task);
                         }
                     }
                     catch (Exception ex)

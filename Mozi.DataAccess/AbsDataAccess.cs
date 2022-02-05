@@ -32,7 +32,10 @@ namespace Mozi.DataAccess
         /// 全局参数
         /// </summary>
         protected readonly List<SqlParameter> GlobalParams = new List<SqlParameter>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connString">数据库链接字符串</param>
         protected AbsDataAccess(string connString)
         {
             _connect = connString;
