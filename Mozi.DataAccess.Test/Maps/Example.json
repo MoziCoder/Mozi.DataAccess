@@ -1,8 +1,10 @@
-﻿[{
-	name: "common.userauth",
-	command:"query",
-	parameter:["employeecode","password"],
-	statement:"select * from $schema$.tbemployee where employeecode=#params.employeecode#",
-	results:["employeecode","employeename"],
-	comment:"用户信息验证"
-}]
+﻿[
+	{
+		"name":"common.userauth",
+		"command": "query",
+		"parameter": [ "employeecode", "password" ],
+		"statement": "select * from $schema$.tbemployee where employeecode=#params.employeecode#",
+		"results": [ "employeecode", "employeename" ],
+		"comment": "用户信息验证"
+	}
+]
