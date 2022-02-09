@@ -56,10 +56,6 @@
       <Project>{8823285e-3436-4c14-8145-39ddd72b402e}</Project>
       <Name>Mozi.DataAccess.SQLServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mozi.DataAccess.Task\Mozi.DataAccess.TaskQuence.csproj">
-      <Project>{1d6a1a53-9686-45dd-8017-c6db6b9f9400}</Project>
-      <Name>Mozi.DataAccess.TaskQuence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Mozi.DataAccess.Template\Mozi.DataAccess.Template.csproj">
       <Project>{cc54ca17-8489-4b41-8fe5-6b4725b417b2}</Project>
       <Name>Mozi.DataAccess.Template</Name>
