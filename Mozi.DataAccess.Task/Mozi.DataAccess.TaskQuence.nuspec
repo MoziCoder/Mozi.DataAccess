@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Mozi.DataAccess.TaskQuence</id>
+    <version>1.0.0</version>
+    <title>Mozi.DataAccess.TaskQuence</title>
+    <authors>Jason</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+	<projectUrl>https://gitee.com/myui/mozidata.git</projectUrl>
+    <description>Mozi.DataAccess执行任务</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright © MoziCoder 2020-2022</copyright>
+    <tags>ORM TaskQuence</tags>
+	  <dependencies>
+		  <dependency id="Mozi.DataAccess" version="[1.0.0,]"/>
+	  </dependencies>
+  </metadata>
+</package>
