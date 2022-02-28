@@ -8,7 +8,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
 	<projectUrl>https://gitee.com/myui/mozidata.git</projectUrl>
-    <description>ORM Sqlite实现</description>
+    <description>ORM Sqlite支持组件</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright © MoziCoder 2020-2022</copyright>
     <tags>ORM SQLITE</tags>
