@@ -2,18 +2,18 @@
 <package >
   <metadata>
     <id>Mozi.DataAccess.SQLServer</id>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
     <title>Mozi.DataAccess.SQLServer</title>
     <authors>Jason</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <iconUrl>https://gitee.com/myui/mozidata.git</iconUrl>
+	<projectUrl>https://gitee.com/myui/mozidata.git</projectUrl>
     <description>ORM SqlServer支持组件</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright © MoziCoder 2020-2022</copyright>
     <tags>ORM SqlServer</tags>
 	  <dependencies>
-		  <dependency id="Mozi.DataAccess" version="[1.0.0,]" />
+		  <dependency id="Mozi.DataAccess" version="[1.1.1,]" />
 	  </dependencies>
   </metadata>
 </package>

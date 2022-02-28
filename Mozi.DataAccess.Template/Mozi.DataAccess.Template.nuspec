@@ -2,18 +2,18 @@
 <package >
   <metadata>
     <id>Mozi.DataAccess.Template</id>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
     <title>Mozi.DataAccess.Template</title>
     <authors>Jason</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <iconUrl>https://gitee.com/myui/mozidata.git</iconUrl>
+	<projectUrl>https://gitee.com/myui/mozidata.git</projectUrl>
     <description>Mozi.DataAccess.Template</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright © MoziCoder 2020-2022</copyright>
     <tags>SQLTemplate</tags>
 	  <dependencies>
-		  <dependency id="Mozi.DataAccess" version="[1.0.0,]" />
+		  <dependency id="Mozi.DataAccess" version="[1.1.1,]" />
 	  </dependencies>
   </metadata>
 </package>
