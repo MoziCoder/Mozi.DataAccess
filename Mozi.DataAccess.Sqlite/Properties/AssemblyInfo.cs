@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MoziCoder workgroup")]
 [assembly: AssemblyProduct("Mozi.DataAccess.Sqlite")]
-[assembly: AssemblyCopyright("Copyright © MoziCoder 2020-2022")]
+[assembly: AssemblyCopyright("Copyright © Jason 2017-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
