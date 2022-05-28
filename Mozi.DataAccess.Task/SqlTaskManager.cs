@@ -48,7 +48,7 @@ namespace Mozi.DataAccess.TaskQuence
         /// <summary>
         /// 任务状态变更事件
         /// </summary>
-        public event TaskStateChange OnTaskStateChange;
+        public TaskStateChange OnTaskStateChange;
 
         /// <summary>
         /// 任务最大尝试次数
@@ -76,7 +76,9 @@ namespace Mozi.DataAccess.TaskQuence
             get { return _autoStart; }
             set { _autoStart = value; }
         }
-
+        /// <summary>
+        /// 单例
+        /// </summary>
         public static SqlTaskManager Instance
         {
             get { return _sm ?? (_sm = new SqlTaskManager()); }
