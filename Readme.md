@@ -26,7 +26,7 @@ Mozi.DataAccess是一个基于.Net开发的SQL ORM套件。框架的设计理念
 
 3. SQL执行队列
 
-##　数据库适配
+## 数据库适配
 
 - SQLServer
 - Sqlite

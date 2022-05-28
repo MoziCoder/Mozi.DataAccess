@@ -12,12 +12,29 @@ namespace Mozi.DataAccess.SQLServer
     public sealed class Access:AbsDataAccess
     {
         /// <summary>
-        /// 
+        /// 实例化
         /// </summary>
         /// <param name="connString">数据库链接字符串</param>
         public Access(string connString) : base(connString)
         {
 
+        }
+
+        public Access(Config.ServerConfig config):base(config)
+        {
+
+        }
+
+        public override string GenerateConnectionString()
+        {
+            SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder
+            {
+                DataSource = _config.Host + (string.IsNullOrEmpty(_config.Instance) ? "" : "\\" + _config.Instance),
+                InitialCatalog = _config.Database,
+                UserID = _config.User,
+                Password = _config.Password
+            };
+            return sb.ConnectionString;
         }
 
         /// <summary>

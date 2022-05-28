@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -187,14 +186,8 @@ namespace Mozi.DataAccess.TaskQuence
             {
                 ServerConfig server = st.Session;
                 SqlStatement ss = st.Statement;
-                SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder
-                {
-                    DataSource = server.Host + (string.IsNullOrEmpty(server.Instance) ? "" : "\\" + server.Instance),
-                    InitialCatalog = server.Database,
-                    UserID = server.User,
-                    Password = server.Password
-                };
-                SQLServer.Access rss = new SQLServer.Access(sb.ConnectionString);
+                SQLServer.Access rss = new SQLServer.Access(server);
+
                 rss.AddParams(st.globalparams);
                 try
                 {

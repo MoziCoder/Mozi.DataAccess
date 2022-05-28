@@ -16,7 +16,10 @@ namespace Mozi.DataAccess.Sqlite
         {
 
         }
-
+        public override string GenerateConnectionString()
+        {
+            return "";
+        }
         /// <summary>
         /// 以连接字符串形式配置连接
         /// </summary>

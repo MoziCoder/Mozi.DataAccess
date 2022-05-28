@@ -20,6 +20,8 @@ namespace Mozi.DataAccess
       
         protected string _connect = "";
 
+        protected Config.ServerConfig _config; 
+
         /// <summary>
         /// 连接字符串
         /// </summary>
@@ -40,6 +42,14 @@ namespace Mozi.DataAccess
         {
             _connect = connString;
         }
+
+        public  AbsDataAccess(Config.ServerConfig config)
+        {
+            _config = config;
+            _connect = GenerateConnectionString();
+        }
+
+        public abstract string GenerateConnectionString();
         /// <summary>
         /// 取服务器版本信息字符串
         /// </summary>
