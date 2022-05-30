@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Mozi.DataAccess.TaskQuence</id>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
     <title>Mozi.DataAccess.TaskQuence</title>
     <authors>Jason</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -13,7 +13,7 @@
     <copyright>Copyright © MoziCoder 2020-2022</copyright>
     <tags>ORM TaskQuence</tags>
 	  <dependencies>
-		  <dependency id="Mozi.DataAccess" version="[1.1.1,]"/>
+		  <dependency id="Mozi.DataAccess" version="[1.1.2,]"/>
 	  </dependencies>
   </metadata>
 </package>
