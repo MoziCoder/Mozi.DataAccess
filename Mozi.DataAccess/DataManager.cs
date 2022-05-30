@@ -1,11 +1,13 @@
-﻿namespace Mozi.DataAccess
+﻿using System.Collections.Generic;
+
+namespace Mozi.DataAccess
 {
     /// <summary>
     /// 多数据库管理类
     /// </summary>
     public class DataManager
     {
-        private static AbsDataAccess _db;
+        private static List<AbsDataAccess> _dbs;
 
         private static DataManager _dm;
 
@@ -16,15 +18,16 @@
 
         private DataManager()
         {
-
+            _dbs = new List<AbsDataAccess>();
         }
         /// <summary>
         /// 初始化数据访问层
         /// </summary>
         /// <param name="db"></param>
-        public void Init(AbsDataAccess db)
+        public void AddProvider(AbsDataAccess db)
         {
-            _db = db;
+
+            _dbs.Add(db);
         }
     }
 }

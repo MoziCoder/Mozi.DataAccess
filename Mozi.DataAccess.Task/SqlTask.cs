@@ -7,19 +7,38 @@ namespace Mozi.DataAccess.TaskQuence
     /// <summary>
     /// sql任务
     /// </summary>
+    [Serializable]
     public class SqlTask
     {
-        public SqlStatement statement { get; set; }
-        public ServerConfig session { get; set; }
-        public object actparams { get; set; }
-        public DateTime buildtime { get; set; }
-        public DateTime begintime { get; set; }
-        public DateTime endtime { get; set; }
-        public string message { get; set; }
-        public int trycount { get; set; }
-        public int errorcount { get; set; }
-        public object result { get; set; }
-        public bool success { get; set; }
+        public string TaskId { get; set; }
+        public SqlTaskState TaskState { get; set; }
+        public SqlStatement Statement { get; set; }
+        public ServerConfig Session { get; set; }
+        public object ActParams { get; set; }
+        public DateTime BuildTime { get; set; }
+        public DateTime BeginTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public string Message { get; set; }
+        public int TryCount { get; set; }
+        public int ErrorCount { get; set; }
+        public object Result { get; set; }
+        public bool Success { get; set; }
+
         public Dictionary<string, object> globalparams = new Dictionary<string, object>();
+        public SqlTask()
+        {
+            TaskId = Guid.NewGuid().ToString("N");
+            TaskState = SqlTaskState.Idle;
+        }
+    }
+    /// <summary>
+    /// 任务状态
+    /// </summary>
+    public enum SqlTaskState
+    {
+        Idle=1,
+        Wait=2,
+        Executing=3,
+        Complete=4
     }
 }

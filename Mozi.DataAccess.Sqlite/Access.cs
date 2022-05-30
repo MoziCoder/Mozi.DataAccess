@@ -16,7 +16,10 @@ namespace Mozi.DataAccess.Sqlite
         {
 
         }
-
+        public override string GenerateConnectionString()
+        {
+            return "";
+        }
         /// <summary>
         /// 以连接字符串形式配置连接
         /// </summary>
@@ -35,7 +38,7 @@ namespace Mozi.DataAccess.Sqlite
         /// <returns></returns>
         public override DataTable ExecuteQuery(SqlStatement statement, object param, string wherecause)
         {
-            string sql = InjectParams(statement, param, wherecause);
+            string sql = InflateParams(statement, param, wherecause);
             using (SQLiteConnection sc = (SQLiteConnection)BuildConnection())
             {
                 SQLiteCommand sqlcmd = sc.CreateCommand();
@@ -58,7 +61,7 @@ namespace Mozi.DataAccess.Sqlite
         /// <returns></returns>
         public override bool ExecuteCommand(SqlStatement statement, object param, string wherecause)
         {
-            string sql = InjectParams(statement, param, wherecause);
+            string sql = InflateParams(statement, param, wherecause);
             using (SQLiteConnection sc = (SQLiteConnection)BuildConnection())
             {
                 SQLiteCommand sqlcmd = sc.CreateCommand();
@@ -81,7 +84,7 @@ namespace Mozi.DataAccess.Sqlite
             List<string> sqls = new List<string>();
             for (int i = 0; i < statements.Count; i++)
             {
-                sqls.Add(InjectParams(statements[i], parameters[i]));
+                sqls.Add(InflateParams(statements[i], parameters[i]));
             }
 
             using (SQLiteConnection sc = (SQLiteConnection)BuildConnection())
@@ -115,12 +118,12 @@ namespace Mozi.DataAccess.Sqlite
         /// <param name="statements"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public override bool ExecuteCommandBatchNoTran(List<SqlStatement> statements, List<object> parameters)
+        public override bool ExecuteCommandBatchWithoutTran(List<SqlStatement> statements, List<object> parameters)
         {
             List<string> sqls = new List<string>();
             for (int i = 0; i < statements.Count; i++)
             {
-                sqls.Add(InjectParams(statements[i], parameters[i]));
+                sqls.Add(InflateParams(statements[i], parameters[i]));
             }
             using (SQLiteConnection sc = (SQLiteConnection)BuildConnection())
             {

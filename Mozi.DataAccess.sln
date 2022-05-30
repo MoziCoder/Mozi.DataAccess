@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess", "Mozi.DataAccess\Mozi.DataAccess.csproj", "{487FF97E-6A46-4D19-A5CA-06B21BFE40BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.Sqlite", "Mozi.DataAccess.Sqlite\Mozi.DataAccess.Sqlite.csproj", "{750DA3C6-6407-40F8-9619-D6B1934EC732}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.SQLServer", "Mozi.DataAccess.SQLServer\Mozi.DataAccess.SQLServer.csproj", "{8823285E-3436-4C14-8145-39DDD72B402E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.Test", "Mozi.DataAccess.Test\Mozi.DataAccess.Test.csproj", "{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.MySql", "Mozi.DataAccess.MySql\Mozi.DataAccess.MySql.csproj", "{B5888600-B912-4196-BC90-610CD9CF92FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.Template", "Mozi.DataAccess.Template\Mozi.DataAccess.Template.csproj", "{CC54CA17-8489-4B41-8FE5-6B4725B417B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mozi.DataAccess.TaskQuence", "Mozi.DataAccess.Task\Mozi.DataAccess.TaskQuence.csproj", "{1D6A1A53-9686-45DD-8017-C6DB6B9F9400}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{487FF97E-6A46-4D19-A5CA-06B21BFE40BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487FF97E-6A46-4D19-A5CA-06B21BFE40BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487FF97E-6A46-4D19-A5CA-06B21BFE40BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487FF97E-6A46-4D19-A5CA-06B21BFE40BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750DA3C6-6407-40F8-9619-D6B1934EC732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750DA3C6-6407-40F8-9619-D6B1934EC732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750DA3C6-6407-40F8-9619-D6B1934EC732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750DA3C6-6407-40F8-9619-D6B1934EC732}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8823285E-3436-4C14-8145-39DDD72B402E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8823285E-3436-4C14-8145-39DDD72B402E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8823285E-3436-4C14-8145-39DDD72B402E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8823285E-3436-4C14-8145-39DDD72B402E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F964075D-8E05-4A23-BD74-8A5CFACBBA1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5888600-B912-4196-BC90-610CD9CF92FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5888600-B912-4196-BC90-610CD9CF92FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5888600-B912-4196-BC90-610CD9CF92FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5888600-B912-4196-BC90-610CD9CF92FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC54CA17-8489-4B41-8FE5-6B4725B417B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC54CA17-8489-4B41-8FE5-6B4725B417B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC54CA17-8489-4B41-8FE5-6B4725B417B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC54CA17-8489-4B41-8FE5-6B4725B417B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D6A1A53-9686-45DD-8017-C6DB6B9F9400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6A1A53-9686-45DD-8017-C6DB6B9F9400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6A1A53-9686-45DD-8017-C6DB6B9F9400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6A1A53-9686-45DD-8017-C6DB6B9F9400}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59D0003B-C2A3-4EC5-AA5A-EC72EB919271}
+	EndGlobalSection
+EndGlobal

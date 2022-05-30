@@ -11,9 +11,30 @@ namespace Mozi.DataAccess.SQLServer
     /// </summary>
     public sealed class Access:AbsDataAccess
     {
+        /// <summary>
+        /// 实例化
+        /// </summary>
+        /// <param name="connString">数据库链接字符串</param>
         public Access(string connString) : base(connString)
         {
 
+        }
+
+        public Access(Config.ServerConfig config):base(config)
+        {
+
+        }
+
+        public override string GenerateConnectionString()
+        {
+            SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder
+            {
+                DataSource = _config.Host + (string.IsNullOrEmpty(_config.Instance) ? "" : "\\" + _config.Instance),
+                InitialCatalog = _config.Database,
+                UserID = _config.User,
+                Password = _config.Password
+            };
+            return sb.ConnectionString;
         }
 
         /// <summary>
@@ -35,7 +56,7 @@ namespace Mozi.DataAccess.SQLServer
         /// <returns></returns>
         public override DataTable ExecuteQuery(SqlStatement statement, object param, string wherecause)
         {
-            string sql = InjectParams(statement, param, wherecause);
+            string sql = InflateParams(statement, param, wherecause);
             using (SqlConnection sc = (SqlConnection)BuildConnection())
             {
                 SqlCommand sqlcmd = sc.CreateCommand();
@@ -58,7 +79,7 @@ namespace Mozi.DataAccess.SQLServer
         /// <returns></returns>
         public override bool ExecuteCommand(SqlStatement statement, object param, string wherecause)
         {
-            string sql = InjectParams(statement, param, wherecause);
+            string sql = InflateParams(statement, param, wherecause);
             using (SqlConnection sc = (SqlConnection)BuildConnection())
             {
                 SqlCommand sqlcmd = sc.CreateCommand();
@@ -82,7 +103,7 @@ namespace Mozi.DataAccess.SQLServer
             List<string> sqls = new List<string>();
             for (int i = 0; i < statements.Count; i++)
             {
-                sqls.Add(InjectParams(statements[i], parameters[i]));
+                sqls.Add(InflateParams(statements[i], parameters[i]));
             }
 
             using (SqlConnection sc = (SqlConnection)BuildConnection())
@@ -116,12 +137,12 @@ namespace Mozi.DataAccess.SQLServer
         /// <param name="statements"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public override bool ExecuteCommandBatchNoTran(List<SqlStatement> statements, List<object> parameters)
+        public override bool ExecuteCommandBatchWithoutTran(List<SqlStatement> statements, List<object> parameters)
         {
             List<string> sqls = new List<string>();
             for (int i = 0; i < statements.Count; i++)
             {
-                sqls.Add(InjectParams(statements[i], parameters[i]));
+                sqls.Add(InflateParams(statements[i], parameters[i]));
             }
             using (SqlConnection sc = (SqlConnection)BuildConnection())
             {

@@ -20,6 +20,8 @@ namespace Mozi.DataAccess
       
         protected string _connect = "";
 
+        protected Config.ServerConfig _config; 
+
         /// <summary>
         /// 连接字符串
         /// </summary>
@@ -32,11 +34,22 @@ namespace Mozi.DataAccess
         /// 全局参数
         /// </summary>
         protected readonly List<SqlParameter> GlobalParams = new List<SqlParameter>();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connString">数据库链接字符串</param>
         protected AbsDataAccess(string connString)
         {
             _connect = connString;
         }
+
+        public  AbsDataAccess(Config.ServerConfig config)
+        {
+            _config = config;
+            _connect = GenerateConnectionString();
+        }
+
+        public abstract string GenerateConnectionString();
         /// <summary>
         /// 取服务器版本信息字符串
         /// </summary>
@@ -57,7 +70,7 @@ namespace Mozi.DataAccess
         /// </summary>
         /// <param name="paramName"></param>
         /// <param name="paramValue"></param>
-        public void AddParam(string paramName, object paramValue)
+        public void SetParam(string paramName, object paramValue)
         {
             if (GlobalParams.Exists(x=>x.name==paramName))
             {
@@ -76,7 +89,7 @@ namespace Mozi.DataAccess
         {
             foreach (var p in pms)
             {
-                AddParam(p.Key, p.Value);
+                SetParam(p.Key, p.Value);
             }
         }
         /// <summary>
@@ -85,21 +98,21 @@ namespace Mozi.DataAccess
         /// <param name="statement"></param>
         /// <param name="param"></param>
         /// <returns></returns>
-        protected string InjectParams(SqlStatement statement, object param)
+        protected string InflateParams(SqlStatement statement, object param)
         {
-            return InjectParams(statement, param, "");
+            return InflateParams(statement, param, "");
         }
 
         protected abstract DbConnection BuildConnection();
         
         /// <summary>
-        /// 实时注入参数
+        /// 实时注入参数值到表达式中
         /// </summary>
         /// <param name="statement"></param>
         /// <param name="param"></param>
         /// <param name="wherecause"></param>
         /// <returns></returns>
-        protected string InjectParams(SqlStatement statement, object param, string wherecause)
+        protected string InflateParams(SqlStatement statement, object param, string wherecause)
         {
             string sql = statement.statement;
             //写入sql头部注释
@@ -507,6 +520,6 @@ namespace Mozi.DataAccess
         /// <param name="statements"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public abstract bool ExecuteCommandBatchNoTran(List<SqlStatement> statements, List<object> parameters);
+        public abstract bool ExecuteCommandBatchWithoutTran(List<SqlStatement> statements, List<object> parameters);
     }  
 }

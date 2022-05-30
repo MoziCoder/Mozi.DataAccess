@@ -6,6 +6,7 @@ namespace Mozi.DataAccess
     /// <summary>
     /// 语句
     /// </summary>
+    [Serializable]
     public class SqlStatement
     {
         public string name            { get; set; }
@@ -24,6 +25,7 @@ namespace Mozi.DataAccess
             results = new List<string>();
         }
     }
+    [Serializable]
     public class CodeBase
     {
         public string FilePath { get; set; }
@@ -32,6 +34,7 @@ namespace Mozi.DataAccess
     /// <summary>
     /// SQL表达式编译结果
     /// </summary>
+    [Serializable]
     public class SqlStatementApplied : SqlStatement
     {
         public string      datasource       { get; set; }
@@ -46,6 +49,7 @@ namespace Mozi.DataAccess
     /// <summary>
     /// 结果
     /// </summary>
+    [Serializable]
     public class SqlResults
     {
         public string name  { get; set; }
@@ -55,6 +59,7 @@ namespace Mozi.DataAccess
     /// <summary>
     /// SQL语句实参
     /// </summary>
+    [Serializable]
     public class SqlParameter : object
     {
         public string name         { get; set; }
