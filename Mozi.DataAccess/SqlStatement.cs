@@ -4,16 +4,34 @@ using System.Collections.Generic;
 namespace Mozi.DataAccess
 {
     /// <summary>
-    /// 语句
+    /// SQL语句表达式
     /// </summary>
     [Serializable]
     public class SqlStatement
     {
+        /// <summary>
+        /// SQL语句全局唯一名称
+        /// </summary>
         public string name            { get; set; }
+        /// <summary>
+        /// SQL语句命令类型 query|update|delete|inert 
+        /// </summary>
         public string command         { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
         public string comment         { get; set; }
+        /// <summary>
+        /// SQL语句模版
+        /// </summary>
         public string statement       { get; set; }
+        /// <summary>
+        /// 结果字段集合
+        /// </summary>
         public List<string> results   { get; set; }
+        /// <summary>
+        /// 参数字段集合
+        /// </summary>
         public List<string> parameter { get; set; }
         /// <summary>
         /// 语句代码路径
