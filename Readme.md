@@ -44,9 +44,37 @@ Mozi.DataAccess是一个基于.Net开发的SQL ORM套件。框架的设计理念
 ~~~csharp
 	
 ~~~
-## SQL模版定义
+## SQL表达式定义
 ~~~json
-   
+
+[{
+	"name": "mz.createtableuser",
+	"command": "query",
+	"parameter": [ ],
+	"statement": "
+		IF NOT EXISTS(SELECT 1 FROM sysobjects WHERE id=object_id(\'$schema$.tbUsers\') AND TYPE =\'U\'))
+		CREATE TABLE tbUsers
+		(
+				UserId   varchar(10) default \'\' not null ,
+				NickName varchar(100) default \'\' not null,
+				UserPwd  varchar(32) default \'\' not null,
+				RegDate  date not null,
+				Mobile   varchar(20) default \'\' not null,
+				IsForbidden int default 0 not null
+				CONSTRAINT PK_TBUSERS PRIMARY KEY (UserId)
+		)
+	",
+	"results": [ ],
+	"comment": "创建用户信息表"
+},{
+	"name": "mz.getuserinfo",
+	"command": "query",
+	"parameter": [ "UserId" ],
+	"statement": "select * from $schema$.tbUsers where UserId=#param.UserId# ",
+	"results": [ "UserId", "Nickname" ],
+	"comment": "获取用户信息"
+}]   
+
 ~~~
 ## 映射对象定义
 
@@ -59,3 +87,4 @@ Mozi.DataAccess是一个基于.Net开发的SQL ORM套件。框架的设计理念
 ### By [Jason][1] on Oct. 12,2017 
 
 [1]:mailto:brotherqian@163.com
+
