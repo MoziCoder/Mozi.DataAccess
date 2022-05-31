@@ -42,7 +42,33 @@ Mozi.DataAccess是一个基于.Net开发的SQL ORM套件。框架的设计理念
 ## 数据访问接口定义
 
 ~~~csharp
-	
+
+    public class DaUser
+    {
+        /// <summary>
+        /// 数据库访问对象
+        /// </summary>
+        SQLServer.Access _server = new SQLServer.Access(new ServerConfig()
+        {
+            Host="127.0.0.1",
+            Instance="",
+            User="sa",
+            Password="123456",
+            ConnectionName="测试库",
+            Database="example"
+        });
+        /// <summary>
+        /// 查询指定的用户
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public User GetUsers(string userid)
+        {
+            SqlStatement sql = SqlMapContainer.Find("mz.getuserinfo");
+            return _server.ExecuteQueryForTop<User>(sql, new { UserId = userid });
+        }
+    }	
+
 ~~~
 ## SQL表达式定义
 ~~~json
@@ -76,9 +102,25 @@ Mozi.DataAccess是一个基于.Net开发的SQL ORM套件。框架的设计理念
 }]   
 
 ~~~
-## 映射对象定义
+## 模型类定义
+~~~
+using System;
 
-## 应用范例
+namespace Mozi.DataAccess.Test.Model
+{
+	public class User
+    {
+        public string UserId    { get; set; }
+        public string NickName  { get; set; }
+        public string Password  { get; set; }
+        public string Mobile    { get; set; }
+        public DateTime RegDate { get; set; }
+        public int IsForbidden  { get; set; }
+    }
+}
+
+~~~
+## 全局参数注入
 
 ## 版权说明
 
