@@ -17,6 +17,16 @@ namespace Mozi.DataAccess.Test.DA
             ConnectionName="测试库",
             Database="example"
         });
+
+        /// <summary>
+        /// 初始化全局参数
+        /// </summary>
+        public void Init()
+        {
+            //schema参数
+            _server.SetParam("schema", "0000");
+        }
+
         /// <summary>
         /// 查询指定的用户
         /// </summary>

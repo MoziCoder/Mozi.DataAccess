@@ -122,7 +122,19 @@ namespace Mozi.DataAccess.Test.Model
 
 ~~~
 
-## 全局参数注入
+## 全局参数定义
+~~~shell 
+       
+
+~~~
+## 内置变量
+
+~~~shell
+
+~~~
+
+## 用例
+
 
 ## 版权说明
 
